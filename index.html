@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shabir Reinhard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: linear-gradient(to right, #2c3e50, #95e7f4);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+            border: solid 1px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 5px 5px 5px;
+        }
+
+        .logo span {
+            color: limegreen;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 4px 0;
+            transition: all 0.3s;
+        }
+
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)),
+                        url('https://i.pinimg.com/736x/4e/98/1a/4e981acb17d51e579b3dc3df0f0abe39.jpg') center/cover no-repeat;
+            min-height: 80vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-text {
+            flex: 1 1 400px;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 6vw, 4.2rem);
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h3, .hero-text h4 {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 1.8rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #e63946;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #d00000;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #e63946;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #d00000;
+        }
+
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(255,255,255,0.25);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            flex: 0 0 auto;
+        }
+
+        
+        .about-services {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+                        url('https://i.pinimg.com/1200x/e5/dd/87/e5dd87db569a2bff2a23fdf4f4470014.jpg') center/cover no-repeat;
+            color: white;
+            padding: 5rem 5% 6rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: limegreen;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 2.2rem;
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .card h3 {
+            color: limegreen;
+            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+        }
+
+        .card p {
+            font-size: 1.05rem;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #2c3e50;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                padding: 2rem 0;
+                transform: translateY(-100%);
+                transition: transform 0.4s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .hero {
+                min-height: 100vh;
+                text-align: center;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-img {
+                width: 180px;
+                height: 180px;
+                margin-bottom: 2rem;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 2.6rem; }
+            .section-title  { font-size: 2rem; }
+            .card { padding: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Shabir<span>Reinhard</span></div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#WhatsappMe">Contact</a></li>
+            <li><a href="#Projects">Projects</a></li>
+        </ul>
+
+        <div class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <img src="https://scontent-mba2-1.xx.fbcdn.net/v/t39.30808-6/555894637_122136677264892242_4840653295028325878_n.jpg?stp=c0.105.963.963a_dst-jpg_s565x565_tt6&_nc_cat=102&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeHHbbVlshm93b_zxpMG1dx5GIwjewOddSsYjCN7A511K6XGJQanhxVtBHoI9GFJjTMn3WIhLaeDcTF46jHPisd4&_nc_ohc=EnawOUUmbVgQ7kNvwFpuNOu&_nc_oc=AdkwInqc0o4fa8N01AePm2PU9FTP3tvs9iDq0GyBlQ5g4_R93BFNSkXXwvVyuge4K1c&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=04-YUbE_0U8xjpJgDZIxzw&oh=00_AfutVuAeXcuRKxWU5kDho60k1P4hToe6B5_5P_hOHsedag&oe=69A4BD98"
+                 alt="Shabir Reinhard" class="profile-img">
+
+            <div class="hero-text">
+                <h1>Let's Visit My Site</h1>
+                <h3>Within this website, you’ll find an overview of my passion</h3>
+                <h4>This platform represents more than just my work</h4>
+
+                <div class="btn-group">
+                    <a href="https://wa.me/254721531304" class="btn btn-primary" target="_blank" id="WhatsappMe">Whatsapp Me</a>
+                    <a href="#projects" class="btn btn-secondary" id="Projects">Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-services" id="about-services">
+
+        <div class="cards-container">
+            <div class="card" id="services">
+                <h3>SERVICES</h3>
+                <p>
+                    1. <strong>Custom Website Development</strong><br>
+                    I build websites that are fully customized to your brand, whether it’s a simple landing page, a corporate site, or a complex web application.
+                </p>
+                <p>
+                    2. <strong>Responsive Design</strong><br>
+                    Your website will look and perform flawlessly on all devices — desktops, tablets, and smartphones.
+                </p>
+                <p>
+                    3. <strong>Frontend & Backend Development</strong><br>
+                    I handle both client-side (HTML, CSS, JavaScript, frameworks) and server-side (Node.js, PHP, databases) development.
+                </p>
+                <p>
+                    4. <strong>E-Commerce Solutions</strong><br>
+                    Need an online store? I create secure, scalable e-commerce websites with smooth payment integration.
+                </p>
+            </div>
+
+            <div class="card" id="about">
+                <h3>ABOUT</h3>
+                <p>
+                    My name is <strong>SHABIR REINHARD</strong>, and I am a dedicated and ambitious Computer Science Student / Web Developer based in Maseno University.
+                </p>
+                <p>
+                    I am deeply passionate about technology and continuously motivated by the power of software to transform ideas into real-world solutions.
+                </p>
+                <p>
+                    I am currently pursuing a <strong>Bachelor of Science in Computer Science</strong> at Maseno University, where I have gained strong foundations in programming, data structures, algorithms, database systems, and software engineering.
+                </p>
+                <p>
+                    My technical skill set includes proficiency in <strong>Python, Java, Pascal</strong>, as well as <strong>HTML/CSS/JavaScript, PHP, MySQL</strong>. I enjoy working on Web Development, AI, Cybersecurity, and Data Science.
+                </p>
+                <p>
+                    Beyond technical skills, I value problem-solving, teamwork, continuous learning, and delivering high-quality solutions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+       
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+
+        
+document.addEventListener('DOMContentLoaded', () => {
+    const projectsBtn = document.getElementById('Projects');
+    
+    if (projectsBtn) {
+        projectsBtn.addEventListener('click', () => {
+            alert("Project Aren't Available\nContact the user");
+        });
+    } else {
+        console.error("Button with id='Projects' not found");
+    }
+});
+    </script>
+
+</body>
+</html>
